@@ -48,7 +48,7 @@ function MyComponent() {
   };
 
   const handleNum = (e) => {
-    if (e.target.matches("li")) {
+    if (e.target.matches("li") || e.target.matches("button")) {
       setSelectedNum(e.target.id);
     }
   };
