@@ -1,4 +1,4 @@
-import MyComponent from "./rate";
+import MyComponent from "./Rates";
 import "./scss/main.scss";
 import "animate.css";
 
