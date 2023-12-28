@@ -1,5 +1,4 @@
 import { useState } from "react";
-import listItem from "./List";
 import img from "../src/assets/images/illustration-thank-you.svg";
 
 function ThankYou({ selectedNum }) {
@@ -16,7 +15,7 @@ function ThankYou({ selectedNum }) {
   );
 }
 
-function Rate({ handleNum }) {
+function Rate({ listItem }) {
   return (
     <>
       <div className="icon">
@@ -27,9 +26,7 @@ function Rate({ handleNum }) {
         Please let us know how we did with your support request. All feedback is
         appreciated to help us improve our offering!
       </p>
-      <ul onClick={(e) => handleNum(e)} className="btn-flex">
-        {listItem}
-      </ul>
+      <ul className="btn-flex">{listItem}</ul>
       <button className="primary-btn" type="submit">
         SUBMIT
       </button>
@@ -41,20 +38,28 @@ function MyComponent() {
   const [click, setClick] = useState(false);
   const [selectedNum, setSelectedNum] = useState(0);
 
+  const list = [1, 2, 3, 4, 5];
+  const handleNum = (e) => {
+    setSelectedNum(e.target.id);
+  };
+
+  const listItem = list.map((list) => {
+    return (
+      <li key={list}>
+        <button id={list} onClick={(e) => handleNum(e)} type="button">
+          {list}
+        </button>
+      </li>
+    );
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setClick(true);
-    handleNum();
-  };
-
-  const handleNum = (e) => {
-    if (e.target.matches("li") || e.target.matches("button")) {
-      setSelectedNum(e.target.id);
-    }
   };
 
   const condition = !click ? (
-    <Rate handleNum={(e) => handleNum(e)} />
+    <Rate listItem={listItem} />
   ) : (
     <ThankYou selectedNum={selectedNum} />
   );
