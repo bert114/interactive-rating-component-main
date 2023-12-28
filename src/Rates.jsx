@@ -48,7 +48,9 @@ function MyComponent() {
   };
 
   const handleNum = (e) => {
-    setSelectedNum(e.target.id);
+    if (e.target.matches("li")) {
+      setSelectedNum(e.target.id);
+    }
   };
 
   const condition = !click ? (
